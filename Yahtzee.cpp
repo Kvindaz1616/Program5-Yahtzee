@@ -74,7 +74,7 @@ void Hand::show(){
 
     for (int i =0; i < HAND_SIZE; i++){ //for loop that plays the five dice
         dice.roll();                    //rolls the dice
-        cout << dice.reveal() << " ";          //prints out the values of each dice
+        cout << dice.reveal() << " ";   //prints out the values of each dice
     }
 }
 //######################################################################
