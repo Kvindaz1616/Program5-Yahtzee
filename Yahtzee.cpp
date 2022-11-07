@@ -61,9 +61,9 @@ class Hand {
 		
 		//selection is the string of dice numbers that the player wants to keep.
 		//For example, "125" means that player wants to keep the first, second, and fifth dice, and roll the rest.
-		void setSelection(string selection);	
+		//void setSelection(string selection);	
 
-		Hand();	
+		//Hand();	
 	
 	private:
 };
