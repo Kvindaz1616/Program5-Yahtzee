@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/kvind/Desktop/Csc141-Fall22/Visual Studio Code/Csc-141/Program 5/Csc-141-Prg5-Yahtzee",
-      "program": "c:/Users/kvind/Desktop/Csc141-Fall22/Visual Studio Code/Csc-141/Program 5/Csc-141-Prg5-Yahtzee/build/Debug/outDebug",
+      "cwd": "c:/Users/kvind/OneDrive/Desktop/csc-141-projects/Program5",
+      "program": "c:/Users/kvind/OneDrive/Desktop/csc-141-projects/Program5/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
