@@ -27,15 +27,18 @@ using namespace std;
 class Dice{
 	private:
 		int value;
-		bool ifDicehasRolled; //three separate functions that sets tovoid true, setsvoid false, and bool opposite
+		bool ifDicehasRolled;
 	public:
+
+		void isTrue(); //sets to ifDicehasRolled to true
+		void isFalse(); //sets to ifDicehasRolled to false
+		bool isOpposite(); //returns opposite of ifDicehasRolled
 
 		//Randomly assigns a value between from 1 to 6 to the dice.
 		void roll();
 		int reveal() {
             return value;
             }
-
 		//The autograder will set the values directly instead of calling roll() to avoid randomness!
 		void setValue(int value) {
             this->value = value;
@@ -46,7 +49,20 @@ class Dice{
 void Dice::roll(){          //rolls a random value between 1-6 & assigns it
     value = (rand()% 6) + 1;  
 }
-
+void Dice::isTrue(){
+	ifDicehasRolled=true;
+}
+void Dice::isFalse(){
+	ifDicehasRolled=false;
+}
+bool Dice::isOpposite(){
+	if (ifDicehasRolled==true){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
 //#################################################################################################
 
 const int HAND_SIZE = 5;
@@ -79,9 +95,9 @@ void Hand::show(){
     }
 }
 
-void Hand::play(){ //loop through arr and cjeck to see if bool return True & roll dice/ if F set pos to arr to false - No if/else
+//void Hand::play(){ //loop through arr and check to see if bool return True & roll dice/ if F set pos to arr to false - No if/else
 
-}
+//}
 //######################################################################
 
 /*
