@@ -27,7 +27,7 @@ using namespace std;
 class Dice{
 	private:
 		int value;
-
+		bool ifDicehasRolled; //three separate functions that sets tovoid true, setsvoid false, and bool opposite
 	public:
 
 		//Randomly assigns a value between from 1 to 6 to the dice.
@@ -55,27 +55,32 @@ class Hand {
 	public:
 
 		//Display the value of the five dice
-		void show();	
-		void play();
-		Dice* getDice(int diceNum);
+		void show();	//shows five dice
+		void play();	//roll dice
+		Dice* getDice(int diceNum); //sets size of array & return array
 		
 		//selection is the string of dice numbers that the player wants to keep.
 		//For example, "125" means that player wants to keep the first, second, and fifth dice, and roll the rest.
-		//void setSelection(string selection);	
+		//void setSelection(string selection);	loop thrugh string and set eadh number to integer - 
 
-		//Hand();	
+		//Hand();	default constructor - setting all values to false by looping through arr[]
 	
 	private:
+	Dice arr[HAND_SIZE];
 };
 
 void Hand::show(){
-    Dice dice;      //object dice of class dice
-    srand(time(0)); //sets random seed for rand()
+   // Dice dice;      //object dice of class dice
+    //srand(time(0)); //sets random seed for rand()
 
     for (int i =0; i < HAND_SIZE; i++){ //for loop that plays the five dice
-        dice.roll();                    //rolls the dice
-        cout << dice.reveal() << " ";   //prints out the values of each dice
+       //dice.roll();                    //rolls the dice
+        cout << arr[i].reveal() << " ";   //prints out the values of each dice
     }
+}
+
+void Hand::play(){ //loop through arr and cjeck to see if bool return True & roll dice/ if F set pos to arr to false - No if/else
+
 }
 //######################################################################
 
@@ -144,8 +149,7 @@ class Game {
 
 //The run function is the main loop of your program
 void run() {
-Hand playHand;
-playHand.show();
+
 }
 
 
