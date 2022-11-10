@@ -79,11 +79,28 @@ class Hand {
 		//For example, "125" means that player wants to keep the first, second, and fifth dice, and roll the rest.
 		void setSelection(string selection);	//loop thrugh string and set each number to integer 
 
-		//Hand();	default constructor - setting all values to false by looping through arr[]
+		//Hand();	//default constructor - setting all values to false by looping through arr[]
 	
 	private:
 	Dice arr[HAND_SIZE];
 };
+void Hand::show(){	//shows five dicev //idk if this is right
+	for (int i=0; i<HAND_SIZE; i++){
+		cout << arr[i].reveal() << " ";
+	}
+	cout << endl;
+}
+
+void Hand::play() { //loop through arr and check to see if bool return True & roll dice/ if False set position to arr to false - No if/else
+for (int i=0; i < HAND_SIZE; i++){
+	if (arr[i].isOpposite() == true){
+		arr[i].roll();
+	}
+	else{
+		arr[i].isFalse();
+	}
+}
+}
 
 Dice* Hand::getDice(int diceNum){	//sets size of array & return array using diceNum
 	return &arr[diceNum];
@@ -96,9 +113,7 @@ void Hand::setSelection(string selection){	//loop thrugh string and set each num
 		arr[num].isFalse();
 	}
 }
-//void Hand::play(){ //loop through arr and check to see if bool return True & roll dice/ if False set position to arr to false - No if/else
 
-//}
 //######################################################################
 
 /*
@@ -166,8 +181,7 @@ class Game {
 
 //The run function is the main loop of your program
 void run() {
-Hand hand;
-hand.show();
+
 }
 
 
