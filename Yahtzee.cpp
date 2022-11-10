@@ -1,6 +1,6 @@
 /****************************
  * HEADER
- *KEVIN DIAZ
+ KEVIN DIAZ
  PROGRAM 5 - YAHTZEE
  MWF 1-1:50PM
  CSC-141 - UIC - FALL 2022
