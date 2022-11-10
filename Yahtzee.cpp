@@ -49,14 +49,14 @@ class Dice{
 void Dice::roll(){          //rolls a random value between 1-6 & assigns it
     value = (rand()% 6) + 1;  
 }
-void Dice::isTrue(){
-	ifDicehasRolled=true;
+void Dice::isTrue(){		//sets to ifDicehasRolled to true
+	ifDicehasRolled = true;
 }
-void Dice::isFalse(){
-	ifDicehasRolled=false;
+void Dice::isFalse(){		//sets to ifDicehasRolled to false
+	ifDicehasRolled = false;
 }
-bool Dice::isOpposite(){
-	if (ifDicehasRolled==true){
+bool Dice::isOpposite(){	//returns opposite of ifDicehasRolled
+	if (ifDicehasRolled == true){
 		return false;
 	}
 	else{
@@ -77,7 +77,7 @@ class Hand {
 		
 		//selection is the string of dice numbers that the player wants to keep.
 		//For example, "125" means that player wants to keep the first, second, and fifth dice, and roll the rest.
-		//void setSelection(string selection);	loop thrugh string and set eadh number to integer - 
+		void setSelection(string selection);	//loop thrugh string and set each number to integer 
 
 		//Hand();	default constructor - setting all values to false by looping through arr[]
 	
@@ -85,17 +85,18 @@ class Hand {
 	Dice arr[HAND_SIZE];
 };
 
-void Hand::show(){
-   // Dice dice;      //object dice of class dice
-    //srand(time(0)); //sets random seed for rand()
-
-    for (int i =0; i < HAND_SIZE; i++){ //for loop that plays the five dice
-       //dice.roll();                    //rolls the dice
-        cout << arr[i].reveal() << " ";   //prints out the values of each dice
-    }
+Dice* Hand::getDice(int diceNum){	//sets size of array & return array using diceNum
+	return &arr[diceNum];
 }
 
-//void Hand::play(){ //loop through arr and check to see if bool return True & roll dice/ if F set pos to arr to false - No if/else
+void Hand::setSelection(string selection){	//loop thrugh string and set each number to integer
+	for (int i=0; i<selection.size(); i++){
+		int num;
+		num = selection[i] - '0';
+		arr[num].isFalse();
+	}
+}
+//void Hand::play(){ //loop through arr and check to see if bool return True & roll dice/ if False set position to arr to false - No if/else
 
 //}
 //######################################################################
@@ -165,7 +166,8 @@ class Game {
 
 //The run function is the main loop of your program
 void run() {
-
+Hand hand;
+hand.show();
 }
 
 
