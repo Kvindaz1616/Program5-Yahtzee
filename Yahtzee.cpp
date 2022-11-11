@@ -179,8 +179,8 @@ class Game {
 	int lowerScore;
 	int bonusScore;
 	int totalScore;
-	bool isPlayed;
-	bool isFinished;
+	bool ifPlayed;
+	bool ifFinished;
 };
 
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. 
@@ -256,27 +256,26 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 		int score = 25;	//initialize score to 25
 		return score;	//return score of 25
 	}
-	
 }
 
 
 void Game::show(){	//standard board display
-	cout << "1." << setw(4) << "Ones:" << setw(14) << "-" << endl;
-	cout << "2." << setw(4) << "Twos:" << setw(14) << "-" << endl;
-	cout << "3." << setw(4) << "Threes:" << setw(12) << "-" << endl;
-	cout << "4." << setw(4) << "Fours:" << setw(13) << "-" << endl;
-	cout << "5." << setw(4) << "Fives:" << setw(13) << "-" << endl;
-	cout << "6." << setw(4) << "Sixes:" << setw(13) << "-" << endl;
-	cout <<setw(5) << "Sum:" << setw(15) << "0" << endl;
-	cout <<setw(5) << "Bonus:" << setw(13) << "0" << endl;
-	cout << "7." << setw(5) << "Three of a kind:" << setw(8) << "-" << endl;
-	cout << "8." << setw(5) << "Four of a kind:" << setw(9) << "-" << endl;
-	cout << "9." << setw(5) << "Full house:" << setw(11) << "-" << endl;
-	cout << "10." << setw(4) << "Small straight:" << setw(9) << "-" << endl;
-	cout << "11." << setw(4) << "Large straight:" << setw(9) << "-" << endl;
-	cout << "12." << setw(4) << "Chance:" << setw(12) << "-" << endl;
-	cout << "13." << setw(4) << "Yahtzee:" << setw(12) << "-" << endl;
-	cout <<"Total:" << setw(13) << "0" << endl;
+	cout << "1." << setw(7) << "Ones:" << setw(14) << "-" << endl;
+	cout << "2." << setw(7) << "Twos:" << setw(14) << "-" << endl;
+	cout << "3." << setw(9) << "Threes:" << setw(12) << "-" << endl;
+	cout << "4." << setw(8) << "Fours:" << setw(13) << "-" << endl;
+	cout << "5." << setw(8) << "Fives:" << setw(13) << "-" << endl;
+	cout << "6." << setw(8) << "Sixes:" << setw(13) << "-" << endl;
+	cout <<setw(8) << "Sum:" << setw(15) << "0" << endl;
+	cout <<setw(10) << "Bonus:" << setw(13) << "0" << endl;
+	cout << "7." << setw(18) << "Three of a kind:" << setw(3) << "-" << endl;
+	cout << "8." << setw(17) << "Four of a kind:" << setw(4) << "-" << endl;
+	cout << "9." << setw(13) << "Full house:" << setw(8) << "-" << endl;
+	cout << "10." << setw(16) << "Small straight:" << setw(4) << "-" << endl;
+	cout << "11." << setw(16) << "Large straight:" << setw(4) << "-" << endl;
+	cout << "12." << setw(8) << "Chance:" << setw(12) << "-" << endl;
+	cout << "13." << setw(9) << "Yahtzee:" << setw(11) << "-" << endl;
+	cout <<"Total:" << setw(17) << "0" << endl;
 	cout <<"Hand: ";
 }
 
@@ -286,7 +285,8 @@ void Game::show(){	//standard board display
 
 //The run function is the main loop of your program
 void run() {
-
+	Game board;
+	board.show();
 }
 
 
