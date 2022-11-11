@@ -30,8 +30,8 @@ class Dice{
 		bool ifDicehasRolled;
 	public:
 
-		void isTrue(); //sets to ifDicehasRolled to true
-		void isFalse(); //sets to ifDicehasRolled to false
+		void setTrue(); //sets to ifDicehasRolled to true
+		void setFalse(); //sets to ifDicehasRolled to false
 		bool isOpposite(); //returns opposite of ifDicehasRolled
 
 		//Randomly assigns a value between from 1 to 6 to the dice.
@@ -49,10 +49,10 @@ class Dice{
 void Dice::roll(){          //rolls a random value between 1-6 & assigns it
     value = (rand()% 6) + 1;  
 }
-void Dice::isTrue(){		//sets to ifDicehasRolled to true
+void Dice::setTrue(){		//sets to ifDicehasRolled to true
 	ifDicehasRolled = true;
 }
-void Dice::isFalse(){		//sets to ifDicehasRolled to false
+void Dice::setFalse(){		//sets to ifDicehasRolled to false
 	ifDicehasRolled = false;
 }
 bool Dice::isOpposite(){	//returns opposite of ifDicehasRolled
@@ -71,7 +71,7 @@ class Hand {
 	public:
 
 		//Display the value of the five dice
-		void show();	//shows five dice -- need help
+		void show();	//shows five dice
 		void play();	//roll dice
 		Dice* getDice(int diceNum); //sets size of array & return array
 		
@@ -79,13 +79,13 @@ class Hand {
 		//For example, "125" means that player wants to keep the first, second, and fifth dice, and roll the rest.
 		void setSelection(string selection);	//loop thrugh string and set each number to integer 
 
-		//Hand();	//default constructor - setting all values to false by looping through arr[] -- need help
+		Hand();	//default constructor - setting all values to false by looping through arr[]
 	
 	private:
 	Dice arr[HAND_SIZE];
 };
 
-void Hand::show(){	//shows five dice --need help
+void Hand::show(){	//shows five dice
 	for (int i=0; i<HAND_SIZE; i++){
 		cout << arr[i].reveal() << " ";
 	}
@@ -96,9 +96,6 @@ void Hand::play() { //loop through arr and check to see if bool return True & ro
 for (int i=0; i < HAND_SIZE; i++){
 	if (arr[i].isOpposite() == true){
 		arr[i].roll();
-	}
-	else{
-		arr[i].isFalse();
 	}
 }
 }
@@ -114,6 +111,11 @@ void Hand::setSelection(string selection){	//loop thrugh string and set each num
 	}
 }
 
+Hand::Hand(){		//default constructor
+	for (int i =0; i < HAND_SIZE; i++){
+		arr[i].setFalse();
+	}
+}
 //######################################################################
 
 /*
@@ -160,7 +162,7 @@ class Game {
 		//Returns the total score
 		int getTotalScore();
 
-		//Play a hand based on the selected row
+		//Play a hand based on the selected row --update board
 		void play(Hand* hand, int row);
 
 		
@@ -176,7 +178,7 @@ class Game {
 	int upperScore;
 	int lowerScore;
 	int bonusScore;
-	int toalScore;
+	int totalScore;
 	bool isPlayed;
 	bool isFinished;
 };
@@ -211,7 +213,11 @@ void Game::show(){
 
 //The run function is the main loop of your program
 void run() {
-
+Hand test;
+test.play();
+test.play();
+test.play();
+test.show();
 }
 
 
