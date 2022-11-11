@@ -118,7 +118,7 @@ Hand::Hand(){		//default constructor
 }
 //######################################################################
 
-/*
+
 //List of rows in the board
 const int ONES = 0;
 const int TWOS = 1;
@@ -174,7 +174,7 @@ class Game {
 
 
 	private:
-	int calcScore;
+	int calculateScore;
 	int upperScore;
 	int lowerScore;
 	int bonusScore;
@@ -183,11 +183,84 @@ class Game {
 	bool isFinished;
 };
 
-int Game::calcScore(Hand* hand, int row){
+int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. 
+	if (row == ONES){	//if row is 0 then it will add up all the 1's in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			if (hand->getDice(i)->reveal() == 1){ //if dice is 1 then add 1 to score
+				score += 1;
+			}
+		}
+		return score;
+	}
+	else if (row == TWOS){	//if row is 1 then it will add up all the 2's in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			if (hand->getDice(i)->reveal() == 2){	//if dice is 2 then add 2 to score
+				score += 2;
+			}
+		}
+		return score;
+	}
+	else if (row == THREES){	//if row is 2 then it will add up all the 3's in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			if (hand->getDice(i)->reveal() == 3){	//if dice is 3 then add 3 to score
+				score += 3;
+			}
+		}
+		return score;
+	}
+	else if (row == FOURS){	//if row is 3 then it will add up all the 4's in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			if (hand->getDice(i)->reveal() == 4){	//if dice is 4 then add 4 to score
+				score += 4;
+			}
+		}
+		return score;
+	}
+	else if (row == FIVES){	//if row is 4 then it will add up all the 5's in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			if (hand->getDice(i)->reveal() == 5){	//if dice is 5 then add 5 to score
+				score += 5;
+			}
+		}
+		return score; 	
+	}
+	else if (row == SIXES){	//if row is 5 then it will add up all the 6's in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			if (hand->getDice(i)->reveal() == 6){	//if dice is 6 then add 6 to score
+				score += 6; 
+			}
+		}
+		return score;	
+	}
+	else if (row == THREE_OF_KIND){	//if row is 6 then it will add up all the dice in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			score += hand->getDice(i)->reveal();	//add dice to score
+		}
+		return score;	
+	}
+	else if (row == FOUR_OF_KIND){	//if row is 7 then it will add up all the dice in the hand
+		int score = 0;	//initialize score to 0
+		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+			score += hand->getDice(i)->reveal();	//add dice to score
+		}
+		return score;	
+	}
+	else if (row == FULL_HOUSE){	//if row is 8 then it will return 25
+		int score = 25;	//initialize score to 25
+		return score;	//return score of 25
+	}
+	
 }
 
 
-void Game::show(){
+void Game::show(){	//standard board display
 	cout << "1." << setw(4) << "Ones:" << setw(14) << "-" << endl;
 	cout << "2." << setw(4) << "Twos:" << setw(14) << "-" << endl;
 	cout << "3." << setw(4) << "Threes:" << setw(12) << "-" << endl;
@@ -206,18 +279,14 @@ void Game::show(){
 	cout <<"Total:" << setw(13) << "0" << endl;
 	cout <<"Hand: ";
 }
-*/
+
 
 
 //#######################################################################################
 
 //The run function is the main loop of your program
 void run() {
-Hand test;
-test.play();
-test.play();
-test.play();
-test.show();
+
 }
 
 
