@@ -12,7 +12,7 @@
 #include <iostream>
 #include <stdlib.h> 
 #include <stdio.h>
-#include <iomanip>
+#include <iomanip>	//setw
 #include <cstdlib> // for rand() and srand()
 #include <ctime> // for randomization
 
@@ -71,7 +71,7 @@ class Hand {
 	public:
 
 		//Display the value of the five dice
-		void show();	//shows five dice
+		void show();	//shows five dice -- need help
 		void play();	//roll dice
 		Dice* getDice(int diceNum); //sets size of array & return array
 		
@@ -79,12 +79,13 @@ class Hand {
 		//For example, "125" means that player wants to keep the first, second, and fifth dice, and roll the rest.
 		void setSelection(string selection);	//loop thrugh string and set each number to integer 
 
-		//Hand();	//default constructor - setting all values to false by looping through arr[]
+		//Hand();	//default constructor - setting all values to false by looping through arr[] -- need help
 	
 	private:
 	Dice arr[HAND_SIZE];
 };
-void Hand::show(){	//shows five dicev //idk if this is right
+
+void Hand::show(){	//shows five dice --need help
 	for (int i=0; i<HAND_SIZE; i++){
 		cout << arr[i].reveal() << " ";
 	}
@@ -110,7 +111,6 @@ void Hand::setSelection(string selection){	//loop thrugh string and set each num
 	for (int i=0; i<selection.size(); i++){
 		int num;
 		num = selection[i] - '0';
-		arr[num].isFalse();
 	}
 }
 
@@ -172,8 +172,38 @@ class Game {
 
 
 	private:
+	int calcScore;
+	int upperScore;
+	int lowerScore;
+	int bonusScore;
+	int toalScore;
+	bool isPlayed;
+	bool isFinished;
 };
 
+int Game::calcScore(Hand* hand, int row){
+}
+
+
+void Game::show(){
+	cout << "1." << setw(4) << "Ones:" << setw(14) << "-" << endl;
+	cout << "2." << setw(4) << "Twos:" << setw(14) << "-" << endl;
+	cout << "3." << setw(4) << "Threes:" << setw(12) << "-" << endl;
+	cout << "4." << setw(4) << "Fours:" << setw(13) << "-" << endl;
+	cout << "5." << setw(4) << "Fives:" << setw(13) << "-" << endl;
+	cout << "6." << setw(4) << "Sixes:" << setw(13) << "-" << endl;
+	cout <<setw(5) << "Sum:" << setw(15) << "0" << endl;
+	cout <<setw(5) << "Bonus:" << setw(13) << "0" << endl;
+	cout << "7." << setw(5) << "Three of a kind:" << setw(8) << "-" << endl;
+	cout << "8." << setw(5) << "Four of a kind:" << setw(9) << "-" << endl;
+	cout << "9." << setw(5) << "Full house:" << setw(11) << "-" << endl;
+	cout << "10." << setw(4) << "Small straight:" << setw(9) << "-" << endl;
+	cout << "11." << setw(4) << "Large straight:" << setw(9) << "-" << endl;
+	cout << "12." << setw(4) << "Chance:" << setw(12) << "-" << endl;
+	cout << "13." << setw(4) << "Yahtzee:" << setw(12) << "-" << endl;
+	cout <<"Total:" << setw(13) << "0" << endl;
+	cout <<"Hand: ";
+}
 */
 
 
