@@ -304,8 +304,11 @@ int Game::getBonusScore(){	//if the user gets a score of 63 or more in the upper
 	}
 }
 
-int Game::getTotalScore(){	//get the total score by adding the upper score, lower score, and bonus score
-	totalScore = upperScore + lowerScore + bonusScore;
+int Game::getTotalScore(){	//get the total score by adding the upper score, lower score, and bonus score -- ?????
+	upperScore = getUpperScore();	//get the upper score
+	lowerScore = getLowerScore();	//get the lower score
+	bonusScore = getBonusScore();	//get the bonus score
+	totalScore = upperScore + lowerScore + bonusScore;	//add up the upper score, lower score, and bonus score
 	return totalScore;	//return the total score
 }
 
