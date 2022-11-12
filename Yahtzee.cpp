@@ -174,7 +174,7 @@ class Game {
 
 
 	private:
-	int calculateScore;
+	//int calculateScore;
 	int upperScore;
 	int lowerScore;
 	int bonusScore;
@@ -279,8 +279,39 @@ void Game::show(){	//standard board display
 	cout <<"Hand: ";
 }
 
+int Game::getUpperScore(){ //get total score from rows 0 to 5 from int calcScore() function and return its value
+Hand *hand = new Hand();	//create new hand
+for(int i=0; i<6; i++){
+upperScore += calcScore(hand, i);	//add up all the scores from rows 0 to 5	
+}
+return upperScore;	//return the total score
+}
 
+int Game::getLowerScore(){ //get total score from rows 6 to 12 from int calcScore() function and return its value
+Hand *hand = new Hand();	//create new hand
+for(int i=6; i<13; i++){
+lowerScore += calcScore(hand, i);	//add up all the scores from rows 6 to 12	
+}
+return lowerScore;	//return the total score
+}	
 
+int Game::getBonusScore(){	//if the user gets a score of 63 or more in the upper section then they get a bonus of 35 points
+	if(upperScore >= 63){	//if the upper score is greater than or equal to 63 then return 35
+		return bonusScore = 35;
+	}
+	else{	//if the upper score is less than 63 then return 0
+		return 0;
+	}
+}
+
+int Game::getTotalScore(){	//get the total score by adding the upper score, lower score, and bonus score
+	totalScore = upperScore + lowerScore + bonusScore;
+	return totalScore;	//return the total score
+}
+
+void Game::play(Hand* hand, int row){ //Play a hand based on the selected row -- updates board
+
+}
 
 //#######################################################################################
 
