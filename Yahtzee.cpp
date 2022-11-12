@@ -174,7 +174,7 @@ class Game {
 
 
 	private:
-	//int calculateScore;
+	int calculateScore;
 	int upperScore;
 	int lowerScore;
 	int bonusScore;
@@ -185,76 +185,76 @@ class Game {
 
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. 
 	if (row == ONES){	//if row is 0 then it will add up all the 1's in the hand
-		int score = 0;	//initialize score to 0
+		 calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 1){ //if dice is 1 then add 1 to score
-				score += 1;
+				calculateScore += 1;
 			}
 		}
-		return score;
+		return calculateScore;
 	}
 	else if (row == TWOS){	//if row is 1 then it will add up all the 2's in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 2){	//if dice is 2 then add 2 to score
-				score += 2;
+				calculateScore += 2;
 			}
 		}
-		return score;
+		return calculateScore;
 	}
 	else if (row == THREES){	//if row is 2 then it will add up all the 3's in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 3){	//if dice is 3 then add 3 to score
-				score += 3;
+				calculateScore += 3;
 			}
 		}
-		return score;
+		return calculateScore;
 	}
 	else if (row == FOURS){	//if row is 3 then it will add up all the 4's in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 4){	//if dice is 4 then add 4 to score
-				score += 4;
+				calculateScore += 4;
 			}
 		}
-		return score;
+		return calculateScore;
 	}
 	else if (row == FIVES){	//if row is 4 then it will add up all the 5's in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 5){	//if dice is 5 then add 5 to score
-				score += 5;
+				calculateScore += 5;
 			}
 		}
-		return score; 	
+		return calculateScore; 	
 	}
 	else if (row == SIXES){	//if row is 5 then it will add up all the 6's in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 6){	//if dice is 6 then add 6 to score
-				score += 6; 
+				calculateScore += 6; 
 			}
 		}
-		return score;	
+		return calculateScore;	
 	}
 	else if (row == THREE_OF_KIND){	//if row is 6 then it will add up all the dice in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
-			score += hand->getDice(i)->reveal();	//add dice to score
+			calculateScore += hand->getDice(i)->reveal();	//add dice to score
 		}
-		return score;	
+		return calculateScore;	
 	}
 	else if (row == FOUR_OF_KIND){	//if row is 7 then it will add up all the dice in the hand
-		int score = 0;	//initialize score to 0
+		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
-			score += hand->getDice(i)->reveal();	//add dice to score
+			calculateScore += hand->getDice(i)->reveal();	//add dice to score
 		}
-		return score;	
+		return calculateScore;	
 	}
 	else if (row == FULL_HOUSE){	//if row is 8 then it will return 25
-		int score = 25;	//initialize score to 25
-		return score;	//return score of 25
+		int calculateScore = 25;	//initialize score to 25
+		return calculateScore;	//return score of 25
 	}
 }
 
@@ -312,7 +312,7 @@ int Game::getTotalScore(){	//get the total score by adding the upper score, lowe
 	return totalScore;	//return the total score
 }
 
-void Game::play(Hand* hand, int row){ //Play a hand based on the selected row -- updates board
+void Game::play(Hand* hand, int row){ //Play a hand based on the selected row and updates void Game::show()
 
 }
 
