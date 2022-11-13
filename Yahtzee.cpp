@@ -27,7 +27,7 @@ using namespace std;
 class Dice{
 	private:
 		int value;
-		bool ifDicehasRolled;
+		bool ifDicehasRolled; //checks if dice has rolled or not
 	public:
 
 		void setTrue(); //sets to ifDicehasRolled to true
@@ -174,13 +174,14 @@ class Game {
 
 
 	private:
-	int calculateScore;
-	int upperScore;
-	int lowerScore;
-	int bonusScore;
-	int totalScore;
-	bool ifPlayed;
-	bool ifFinished;
+	int calculateScore; //private int for the function calcScore()
+	int upperScore;	//private int for getUpperScore()
+	int lowerScore;	//private int for getLowerScore()
+	int bonusScore;	//private int for getBonusScore()
+	int totalScore;	//private int for getTotalScore()
+	bool ifPlayed;	//private bool for isPlayed()
+	bool ifFinished; //private bool for isFinished()
+	string starting_Hyphen_Value; //private string for play()
 };
 
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. 
@@ -260,21 +261,22 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 
 
 void Game::show(){	//standard board display
-	cout << "1." << setw(7) << "Ones:" << setw(14) << "-" << endl;
-	cout << "2." << setw(7) << "Twos:" << setw(14) << "-" << endl;
-	cout << "3." << setw(9) << "Threes:" << setw(12) << "-" << endl;
-	cout << "4." << setw(8) << "Fours:" << setw(13) << "-" << endl;
-	cout << "5." << setw(8) << "Fives:" << setw(13) << "-" << endl;
-	cout << "6." << setw(8) << "Sixes:" << setw(13) << "-" << endl;
+starting_Hyphen_Value = "-";
+	cout << "1." << setw(7) << "Ones:" << setw(14) << starting_Hyphen_Value << endl;
+	cout << "2." << setw(7) << "Twos:" << setw(14) << starting_Hyphen_Value << endl;
+	cout << "3." << setw(9) << "Threes:" << setw(12) << starting_Hyphen_Value << endl;
+	cout << "4." << setw(8) << "Fours:" << setw(13) << starting_Hyphen_Value << endl;
+	cout << "5." << setw(8) << "Fives:" << setw(13) << starting_Hyphen_Value << endl;
+	cout << "6." << setw(8) << "Sixes:" << setw(13) << starting_Hyphen_Value << endl;
 	cout <<setw(8) << "Sum:" << setw(15) << "0" << endl;
 	cout <<setw(10) << "Bonus:" << setw(13) << "0" << endl;
-	cout << "7." << setw(18) << "Three of a kind:" << setw(3) << "-" << endl;
-	cout << "8." << setw(17) << "Four of a kind:" << setw(4) << "-" << endl;
-	cout << "9." << setw(13) << "Full house:" << setw(8) << "-" << endl;
-	cout << "10." << setw(16) << "Small straight:" << setw(4) << "-" << endl;
-	cout << "11." << setw(16) << "Large straight:" << setw(4) << "-" << endl;
-	cout << "12." << setw(8) << "Chance:" << setw(12) << "-" << endl;
-	cout << "13." << setw(9) << "Yahtzee:" << setw(11) << "-" << endl;
+	cout << "7." << setw(18) << "Three of a kind:" << setw(3) << starting_Hyphen_Value << endl;
+	cout << "8." << setw(17) << "Four of a kind:" << setw(4) << starting_Hyphen_Value << endl;
+	cout << "9." << setw(13) << "Full house:" << setw(8) << starting_Hyphen_Value << endl;
+	cout << "10." << setw(16) << "Small straight:" << setw(4) << starting_Hyphen_Value << endl;
+	cout << "11." << setw(16) << "Large straight:" << setw(4) << starting_Hyphen_Value << endl;
+	cout << "12." << setw(8) << "Chance:" << setw(12) << starting_Hyphen_Value << endl;
+	cout << "13." << setw(9) << "Yahtzee:" << setw(11) << starting_Hyphen_Value << endl;
 	cout <<"Total:" << setw(17) << "0" << endl;
 	cout <<"Hand: ";
 }
@@ -313,8 +315,9 @@ int Game::getTotalScore(){	//get the total score by adding the upper score, lowe
 }
 
 void Game::play(Hand* hand, int row){ //Play a hand based on the selected row and updates void Game::show()
-
+calcScore(hand, row);	//calculate the score for the selected row
 }
+
 
 //#######################################################################################
 
