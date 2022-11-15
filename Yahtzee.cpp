@@ -190,14 +190,6 @@ class Game {
 	string starting_Hyphen_Value; //private string for play()
 };
 
-void Game::setScore(int row, int score){	//setScore for arrayBoard
-	arrayBoard[row] = score;
-}
-
-int Game::getScore(int row){	//getScore for arrayBoard
-	return arrayBoard[row];
-}
-
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. --stash in arrayBoard for every row and return arrayboard[row]
 	if (row == ONES){	//if row is 0 then it will add up all the 1's in the hand
 		 calculateScore = 0;	//initialize score to 0
@@ -329,12 +321,18 @@ int Game::getTotalScore(){	//get the total score by adding the upper score, lowe
 }
 
 void Game::play(Hand* hand, int row){ //Play a hand based on the selected row and updates void Game::show()
-int calcScoreValue;
+int calcScoreValue; //local variable to hold score value and store in arrayBoard[row]
 calcScoreValue = calcScore(hand, row);	//get the score from the calcScore() function
 arrayBoard[row] = calcScoreValue;	//set the arrayBoard[row] to the score
-
 }
 
+void Game::setScore(int row, int score){	//setScore for arrayBoard
+	arrayBoard[row] = score;
+}
+
+int Game::getScore(int row){	//getScore for arrayBoard
+	return arrayBoard[row];
+}
 
 //#######################################################################################
 
