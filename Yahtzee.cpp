@@ -152,7 +152,7 @@ class Game {
 		//Returns the score of the upper part of the board
 		int getUpperScore();
 		
-		//Returns the score of the upper part of the board
+		//Returns the score of the lower part of the board
 		int getLowerScore();
 	
 
@@ -172,8 +172,14 @@ class Game {
 		//Check to see if all rows haven been played or not (returns true if all rows have been played)
 		bool isFinished();
 
+		//setScore for arrayBoard
+		void setScore(int row, int score);
+
+		//getScore for arrayBoard
+		int getScore(int row);
 
 	private:
+	int arrayBoard[BOARD_SIZE]; //arrayBoard
 	int calculateScore; //private int for the function calcScore()
 	int upperScore;	//private int for getUpperScore()
 	int lowerScore;	//private int for getLowerScore()
@@ -184,7 +190,15 @@ class Game {
 	string starting_Hyphen_Value; //private string for play()
 };
 
-int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. 
+void Game::setScore(int row, int score){	//setScore for arrayBoard
+	arrayBoard[row] = score;
+}
+
+int Game::getScore(int row){	//getScore for arrayBoard
+	return arrayBoard[row];
+}
+
+int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. --stash in arrayBoard for every row and return arrayboard[row]
 	if (row == ONES){	//if row is 0 then it will add up all the 1's in the hand
 		 calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
@@ -192,7 +206,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 				calculateScore += 1;
 			}
 		}
-		return calculateScore;
+		return arrayBoard[ONES] = calculateScore;	//set arrayBoard[0] to score
 	}
 	else if (row == TWOS){	//if row is 1 then it will add up all the 2's in the hand
 		calculateScore = 0;	//initialize score to 0
@@ -201,7 +215,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 				calculateScore += 2;
 			}
 		}
-		return calculateScore;
+		return arrayBoard[TWOS] = calculateScore;	//set arrayBoard[1] to score
 	}
 	else if (row == THREES){	//if row is 2 then it will add up all the 3's in the hand
 		calculateScore = 0;	//initialize score to 0
@@ -210,7 +224,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 				calculateScore += 3;
 			}
 		}
-		return calculateScore;
+		return arrayBoard[THREES] = calculateScore;	//set arrayBoard[2] to score
 	}
 	else if (row == FOURS){	//if row is 3 then it will add up all the 4's in the hand
 		calculateScore = 0;	//initialize score to 0
@@ -219,7 +233,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 				calculateScore += 4;
 			}
 		}
-		return calculateScore;
+		return arrayBoard[FOURS] = calculateScore;	//set arrayBoard[3] to score
 	}
 	else if (row == FIVES){	//if row is 4 then it will add up all the 5's in the hand
 		calculateScore = 0;	//initialize score to 0
@@ -228,7 +242,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 				calculateScore += 5;
 			}
 		}
-		return calculateScore; 	
+		return arrayBoard[FIVES] = calculateScore;	//set arrayBoard[4] to score
 	}
 	else if (row == SIXES){	//if row is 5 then it will add up all the 6's in the hand
 		calculateScore = 0;	//initialize score to 0
@@ -237,25 +251,25 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 				calculateScore += 6; 
 			}
 		}
-		return calculateScore;	
+		return arrayBoard[SIXES] = calculateScore;	//set arrayBoard[5] to score
 	}
-	else if (row == THREE_OF_KIND){	//if row is 6 then it will add up all the dice in the hand
+	else if (row == THREE_OF_KIND){	//if row is 6 then it will add up all the dice in the hand --need help
 		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			calculateScore += hand->getDice(i)->reveal();	//add dice to score
 		}
-		return calculateScore;	
+		return arrayBoard[THREE_OF_KIND] = calculateScore;	//set arrayBoard[6] to score	
 	}
-	else if (row == FOUR_OF_KIND){	//if row is 7 then it will add up all the dice in the hand
+	else if (row == FOUR_OF_KIND){	//if row is 7 then it will add up all the dice in the hand --need help
 		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			calculateScore += hand->getDice(i)->reveal();	//add dice to score
 		}
-		return calculateScore;	
+		return arrayBoard[FOUR_OF_KIND] = calculateScore;	//set arrayBoard[7] to score
 	}
-	else if (row == FULL_HOUSE){	//if row is 8 then it will return 25
+	else if (row == FULL_HOUSE){	//if row is 8 then it will return 25 --need help
 		int calculateScore = 25;	//initialize score to 25
-		return calculateScore;	//return score of 25
+		return arrayBoard[FULL_HOUSE]=calculateScore;	//return score of 25
 	}
 }
 
@@ -315,7 +329,10 @@ int Game::getTotalScore(){	//get the total score by adding the upper score, lowe
 }
 
 void Game::play(Hand* hand, int row){ //Play a hand based on the selected row and updates void Game::show()
-calcScore(hand, row);	//calculate the score for the selected row
+int calcScoreValue;
+calcScoreValue = calcScore(hand, row);	//get the score from the calcScore() function
+arrayBoard[row] = calcScoreValue;	//set the arrayBoard[row] to the score
+
 }
 
 
@@ -323,8 +340,8 @@ calcScore(hand, row);	//calculate the score for the selected row
 
 //The run function is the main loop of your program
 void run() {
-	Game board;
-	board.show();
+	//Game board;
+	//board.show();
 }
 
 
