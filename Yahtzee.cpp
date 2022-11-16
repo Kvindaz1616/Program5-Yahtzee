@@ -36,16 +36,19 @@ class Dice{
 
 		//Randomly assigns a value between from 1 to 6 to the dice.
 		void roll();
-		int reveal() {
-            return value;
-            }
+		int reveal();
 		//The autograder will set the values directly instead of calling roll() to avoid randomness!
-		void setValue(int value) {
-            this->value = value;
-            }
+		void setValue(int value);
 
 };
 
+int Dice::reveal(){
+	return value;
+}
+
+void Dice::setValue(int value){
+	this->value = value;
+}
 void Dice::roll(){          //rolls a random value between 1-6 & assigns it
     value = (rand()% 6) + 1;  
 }
@@ -193,20 +196,26 @@ class Game {
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. --stash in arrayBoard for every row and return arrayboard[row]
 	int arrayDiceCounter[6]={0,0,0,0,0,0}; 
 						//   1 2 3 4 5 6 
+	int counter = 0;
+	int counter2 = 0;
+	int counter3 = 0;
+	int counter4 = 0;
+	int counter5 = 0;
+	int counter6 = 0;
+	int calculateScore = 0;
+	// for loop going through hand, check what value it is increment at the correct index of the array
+	
 
-	// for loop going through hand, check what value it is increment at the right index of the array
-	
-	
-	if (row == ONES){	//if row is 0 then it will add up all the 1's in the hand
+	if (row == ONES){	//go through and check if the value is 1, if so add 1 to calculateScore
 		 calculateScore = 0;	//initialize score to 0
-		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
-			if (hand->getDice(i)->reveal() == 1){ //if dice is 1 then add 1 to score
+		for (int i=0; i < HAND_SIZE; i++){
+			if (hand->getDice(i)->reveal() == 1){
 				calculateScore += 1;
 			}
 		}
-		return arrayBoard[ONES] = calculateScore;	//set arrayBoard[0] to score
+		return arrayBoard[ONES] = calculateScore;	//return score
 	}
-	else if (row == TWOS){	//if row is 1 then it will add up all the 2's in the hand
+	 else if (row == TWOS){	//if row is 1 then it will add up all the 2's in the hand
 		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 2){	//if dice is 2 then add 2 to score
@@ -215,7 +224,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 		}
 		return arrayBoard[TWOS] = calculateScore;	//set arrayBoard[1] to score
 	}
-	else if (row == THREES){	//if row is 2 then it will add up all the 3's in the hand
+	 else if (row == THREES){	//if row is 2 then it will add up all the 3's in the hand
 		calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			if (hand->getDice(i)->reveal() == 3){	//if dice is 3 then add 3 to score
@@ -242,34 +251,214 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 		}
 		return arrayBoard[FIVES] = calculateScore;	//set arrayBoard[4] to score
 	}
-	else if (row == SIXES){	//if row is 5 then it will add up all the 6's in the hand
-		calculateScore = 0;	//initialize score to 0
-		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
-			if (hand->getDice(i)->reveal() == 6){	//if dice is 6 then add 6 to score
-				calculateScore += 6; 
-			}
-		}
-		return arrayBoard[SIXES] = calculateScore;	//set arrayBoard[5] to score
+	else if (row == SIXES){	//loop through hand and for all sixes found add six
+	     calculateScore=0;
+	     for (int i=0; i<HAND_SIZE; i++){ //loops through hand
+		     if (hand->getDice(i)->reveal() == 6){	//if dice is 6 then add 6 to score
+			 calculateScore += 6;
+		    }
+	   }
+	  return arrayBoard[SIXES] = calculateScore;
 	}
 	else if (row == THREE_OF_KIND){	//if row is 6 then it will add up all the dice in the hand --need help
-		calculateScore = 0;	//initialize score to 0
-		//go through array of counters and if any values at any index is three, then it is three of a kind
+		for (int i =0; i < HAND_SIZE; i++){
+			if (hand->getDice(i)->reveal() == 1){
+				counter++;
+			}
+			else if (hand->getDice(i)->reveal() == 2){
+				counter2++;
+			}
+			else if (hand->getDice(i)->reveal() == 3){
+				counter3++;
+			}
+			else if (hand->getDice(i)->reveal() == 4){
+				counter4++;
+			}
+			else if (hand->getDice(i)->reveal() == 5){
+				counter5++;
+			}
+			else if (hand->getDice(i)->reveal() == 6){
+				counter6++;
+			}
+		}
+		if (counter>=3 || counter2>=3 || counter3>=3 || counter4>=3 || counter5>=3 || counter6>=3){
+			for (int i = 0; i < HAND_SIZE; i++){
+				calculateScore += hand->getDice(i)->reveal();
+			}
+		}
+		return arrayBoard[THREE_OF_KIND] = calculateScore;
+	}
+	 else if (row == FOUR_OF_KIND){	//if row is 7 then it will add up all the dice in the hand --need help
+			//initialize score to 0
+		//go through array of counters and if any values at any index is four, then it is four of a kind
+		for (int i =0; i < HAND_SIZE; i++){
+			if (hand->getDice(i)->reveal() == 1){
+				counter++;
+			}
+			else if (hand->getDice(i)->reveal() == 2){
+				counter2++;
+			}
+			else if (hand->getDice(i)->reveal() == 3){
+				counter3++;
+			}
+			else if (hand->getDice(i)->reveal() == 4){
+				counter4++;
+			}
+			else if (hand->getDice(i)->reveal() == 5){
+				counter5++;
+			}
+			else if (hand->getDice(i)->reveal() == 6){
+				counter6++;
+			}
+		}
+		if (counter>=4 || counter2>=4 || counter3>=4 || counter4>=4 || counter5>=4 || counter6>=4){
+			for (int i = 0; i < HAND_SIZE; i++){
+				calculateScore += hand->getDice(i)->reveal();
+			}
+		}
+		return arrayBoard[FOUR_OF_KIND] = calculateScore;
+	}
+	 else if (row == FULL_HOUSE){	//if row is 8 and a pair and three of a kind
+		for (int i =0; i < HAND_SIZE; i++){
+			if (hand->getDice(i)->reveal() == 1){
+				counter++;
+			}
+			else if (hand->getDice(i)->reveal() == 2){
+				counter2++;
+			}
+			else if (hand->getDice(i)->reveal() == 3){
+				counter3++;
+			}
+			else if (hand->getDice(i)->reveal() == 4){
+				counter4++;
+			}
+			else if (hand->getDice(i)->reveal() == 5){
+				counter5++;
+			}
+			else if (hand->getDice(i)->reveal() == 6){
+				counter6++;
+			}
+		}
+		if ((counter == 3 || counter3 == 3 || counter4 == 3 || counter5 == 3 || counter6 == 3) && (counter2 ==2)){
+			calculateScore += 25;
+		}
+		else if ((counter2 == 3 || counter3 == 3 || counter4 == 3 || counter5 == 3 || counter6 == 3) && (counter == 2)){
+			calculateScore += 25;
+		}
+		else if ((counter == 3 || counter2 == 3 || counter4 == 3 || counter5 == 3 || counter6 == 3) && (counter3 ==2)){
+			calculateScore += 25;
+		}
+		else if ((counter == 3 || counter2 == 3 || counter3 == 3 || counter5 == 3 || counter6 == 3) && (counter4 ==2)){
+			calculateScore += 25;
+		}
+		else if ((counter == 3 || counter2 == 3 || counter3 == 3 || counter4 == 3 || counter6 == 3) && (counter5 ==2)){
+			calculateScore += 25;
+		}
+		else if ((counter == 3 || counter2 == 3 || counter3 == 3 || counter4 == 3 || counter5 == 3) && (counter6 ==2)){
+			calculateScore += 25;
+		}
+		else if ((counter==5)|| (counter2==5) || (counter3==5) || (counter4==5) || (counter5==5) || (counter6==5)){
+			calculateScore += 25;
+		}
+		ifPlayed = true;
+		return arrayBoard[FULL_HOUSE] = calculateScore;
+	 }
+	else if (row == SMALL_STRAIGHT){ // if row is 9 and there is a small straight
+		for (int i =0; i < HAND_SIZE;i++){
+			if(hand->getDice(i)->reveal() == 1){
+				counter++;
+			}
+			else if(hand->getDice(i)->reveal() == 2){
+				counter2++;
+			}
+			else if(hand->getDice(i)->reveal() == 3){
+				counter3++;
+			}
+			else if(hand->getDice(i)->reveal() == 4){
+				counter4++;
+			}
+			else if(hand->getDice(i)->reveal() == 5){
+				counter5++;
+			}
+			else if(hand->getDice(i)->reveal() == 6){
+				counter6++;
+			}
+		}
+		if (counter >= 1 && counter2 >= 1 && counter3 >= 1 && counter4 >= 1){
+			calculateScore += 30;
+		}
+		else if (counter2 >= 1 && counter3 >= 1 && counter4 >= 1 && counter5 >= 1){
+			calculateScore += 30;
+		}
+		else if (counter3 >= 1 && counter4 >= 1 && counter5 >= 1 && counter6 >= 1){
+			calculateScore += 30;
+		}
+		return arrayBoard[SMALL_STRAIGHT] = calculateScore;
+	}
+	else if (row == LARGE_STRAIGHT){ // if row is 10 and there is a large straight
+		for (int i =0; i < HAND_SIZE; i++){
+			if (hand->getDice(i)->reveal() == 1){
+				counter++;
+			}
+			else if (hand->getDice(i)->reveal() == 2){
+				counter2++;
+			}
+			else if (hand->getDice(i)->reveal() == 3){
+				counter3++;
+			}
+			else if (hand->getDice(i)->reveal() == 4){
+				counter4++;
+			}
+			else if (hand->getDice(i)->reveal() == 5){
+				counter5++;
+			}
+			else if (hand->getDice(i)->reveal() == 6){
+				counter6++;
+			}
+		}
+		if ((counter == 1 && counter2 == 1 && counter3 == 1 && counter4 == 1 && counter5 == 1)){
+			calculateScore += 40;
+		}
+		else if ((counter2 == 1 && counter3 == 1 && counter4 == 1 && counter5 == 1 && counter6 == 1)){
+			calculateScore += 40;
+		}
+		
+		return arrayBoard[LARGE_STRAIGHT] = calculateScore;
+	}
 
-		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
-			calculateScore += hand->getDice(i)->reveal();	//add dice to score
+	if (row == CHANCE){
+		calculateScore=0;	//initialize score to 0
+		//go through array of counters and Sum of all of the dice.
+		for (int i=0; i<HAND_SIZE; i++){
+			calculateScore += hand->getDice(i)->reveal();
 		}
-		return arrayBoard[THREE_OF_KIND] = calculateScore;	//set arrayBoard[6] to score	
+		return arrayBoard[CHANCE] = calculateScore;	//set arrayBoard[11] to score
 	}
-	else if (row == FOUR_OF_KIND){	//if row is 7 then it will add up all the dice in the hand --need help
-		calculateScore = 0;	//initialize score to 0
-		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
-			calculateScore += hand->getDice(i)->reveal();	//add dice to score
+	else if (row == YAHTZEE){
+		for (int i =0; i < HAND_SIZE; i++){
+			if (hand->getDice(i)->reveal() == 1){
+				counter++;
+			}
+			else if (hand->getDice(i)->reveal() == 2){
+				counter2++;
+			}
+			else if (hand->getDice(i)->reveal() == 3){
+				counter3++;
+			}
+			else if (hand->getDice(i)->reveal() == 4){
+				counter4++;
+			}
+			else if (hand->getDice(i)->reveal() == 5){
+				counter5++;
+			}
+			else if (hand->getDice(i)->reveal() == 6){
+				counter6++;
+			}
 		}
-		return arrayBoard[FOUR_OF_KIND] = calculateScore;	//set arrayBoard[7] to score
-	}
-	else if (row == FULL_HOUSE){	//if row is 8 then it will return 25 --need help
-		int calculateScore = 25;	//initialize score to 25
-		return arrayBoard[FULL_HOUSE]=calculateScore;	//return score of 25
+		if ((counter==5)|| (counter2==5) || (counter3==5) || (counter4==5) || (counter5==5) || (counter6==5)){
+			calculateScore += 50;
+		}
+		return arrayBoard[YAHTZEE] = calculateScore;
 	}
 }
 
@@ -312,12 +501,10 @@ return lowerScore;	//return the total score
 }	
 
 int Game::getBonusScore(){	//if the user gets a score of 63 or more in the upper section then they get a bonus of 35 points
-	if(upperScore >= 63){	//if the upper score is greater than or equal to 63 then return 35
-		return bonusScore = 35;
-	}
-	else{	//if the upper score is less than 63 then return 0
-		return 0;
-	}
+if (upperScore >= 63){
+	bonusScore = 35;
+}
+return bonusScore;
 }
 
 int Game::getTotalScore(){	//get the total score by adding the upper score, lower score, and bonus score -- ?????
@@ -332,7 +519,24 @@ void Game::play(Hand* hand, int row){ //Play a hand based on the selected row an
 int calcScoreValue; //local variable to hold score value and store in arrayBoard[row]
 calcScoreValue = calcScore(hand, row);	//get the score from the calcScore() function
 arrayBoard[row] = calcScoreValue;	//set the arrayBoard[row] to the score
+}
 
+bool Game:: isFinished(){	//check to see if the game is finished
+	for(int i=0; i<13; i++){
+		if(arrayBoard[i] == -1){	//if the arrayBoard[i] is equal to -1 then the game is not finished
+			return false;
+		}
+	}
+	return true;	//if the arrayBoard[i] is not equal to -1 then the game is finished
+}
+
+bool Game::isPlayed(int row){//Check to see if a row has been played or not (returns true if a row has been played)
+	if(arrayBoard[row] != -1){	//if the arrayBoard[row] is not equal to -1 then the row has been played
+		return true;
+	}
+	else{
+		return false;	//if the arrayBoard[row] is equal to -1 then the row has not been played
+	}
 }
 
 void Game::setScore(int row, int score){ //setScore for arrayBoard
@@ -342,13 +546,12 @@ void Game::setScore(int row, int score){ //setScore for arrayBoard
 int Game::getScore(int row){	//getScore for arrayBoard
 	return arrayBoard[row];
 }
-
 //#######################################################################################
 
 //The run function is the main loop of your program
 void run() {
-	//Game board;
-	//board.show();
+	Game board;
+	board.show();
 }
 
 
@@ -370,7 +573,7 @@ void run() {
 		check1 = false;
 	}
 	if (check1) {
-		cout << "check 1 passed\n"; 
+		cout << "check 1 for LARGE STRAIGHT passed\n"; 
 	}
 
 	hand->getDice(0)->setValue(2);
@@ -385,7 +588,7 @@ void run() {
 	}
 
 	if (check2) {
-		cout << "check 2 passed\n"; 
+		cout << "check 2 for LARGE STRAIGHT passed\n"; 
 	}
 
 	hand->getDice(0)->setValue(3);
@@ -400,7 +603,7 @@ void run() {
 	}
 
 	if (check3) {
-		cout << "check 3 passed\n"; 
+		cout << "check 3 FOR LARGE STRAIGHT passed\n"; 
 	}
 
 	hand->getDice(0)->setValue(1);
@@ -415,16 +618,172 @@ void run() {
 	}
 
 	if (check4) {
-		cout << "check 4 passed\n"; 
+		cout << "check 4 FOR LARGE STRAIGHT passed\n"; 
 	}
 
+	hand->getDice(0)->setValue(1);
+	hand->getDice(1)->setValue(2);
+	hand->getDice(2)->setValue(3);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check5 = true;
+	if (game.calcScore(hand, ONES) != 1) {
+		check5 = false;
+	}
+	if (check5) {
+		cout << "check 1 for ONES passed\n"; 
+	}
 
-}*/
+	hand->getDice(0)->setValue(1);
+	hand->getDice(1)->setValue(2);
+	hand->getDice(2)->setValue(3);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check6 = true;
+	if (game.calcScore(hand, TWOS) != 2) {
+		check6 = false;
+	}
+	if (check6) {
+		cout << "check 1 for TWOS passed\n"; 
+	}
+
+	hand->getDice(0)->setValue(1);
+	hand->getDice(1)->setValue(2);
+	hand->getDice(2)->setValue(3);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check7 = true;
+	if (game.calcScore(hand, THREES) != 3) {
+		check7 = false;
+	}
+	if (check7) {
+		cout << "check 1 for THREES passed\n"; 
+	}
+
+	hand->getDice(0)->setValue(1);
+	hand->getDice(1)->setValue(2);
+	hand->getDice(2)->setValue(3);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check8 = true;
+	if (game.calcScore(hand, FOURS) != 4) {
+		check8 = false;
+	}
+	if (check8) {
+		cout << "check 1 for FOURS passed\n"; 
+	}
+
+	hand->getDice(0)->setValue(1);
+	hand->getDice(1)->setValue(2);
+	hand->getDice(2)->setValue(3);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check9 = true;
+	if (game.calcScore(hand, FIVES) != 5) {
+		check9 = false;
+	}
+	if (check9) {
+		cout << "check 1 for FIVES passed\n"; 
+	}
+
+	hand->getDice(0)->setValue(4);
+	hand->getDice(1)->setValue(3);
+	hand->getDice(2)->setValue(6);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check10 = true;
+	if (game.calcScore(hand, SIXES) != 6) {
+		check10 = false;
+	}
+	if (check10) {
+		cout << "check 1 for SIXES passed\n"; 
+	}
+
+	hand->getDice(0)->setValue(4);
+	hand->getDice(1)->setValue(3);
+	hand->getDice(2)->setValue(6);
+	hand->getDice(3)->setValue(4);
+	hand->getDice(4)->setValue(5);
+	
+	bool check11 = true;
+	if (game.calcScore(hand, SMALL_STRAIGHT) != 30) {
+		check11 = false;
+	}
+	if (check11) {
+		cout << "check 1 for SMALL STRAIGHT passed\n"; 
+	}
+
+	hand->getDice(0)->setValue(5);
+	hand->getDice(1)->setValue(5);
+	hand->getDice(2)->setValue(5);
+	hand->getDice(3)->setValue(5);
+	hand->getDice(4)->setValue(5);
+	
+	bool check12 = true;
+	if (game.calcScore(hand, SMALL_STRAIGHT) != 0) {
+		check12 = false;
+	}
+	if (check12){
+		cout << "check 2 for SMALL STRAIGHT passed\n";
+	}
+
+	hand->getDice(0)->setValue(2);
+	hand->getDice(0)->setValue(2);
+	hand->getDice(0)->setValue(3);
+	hand->getDice(0)->setValue(3);
+	hand->getDice(0)->setValue(3);
+
+
+	bool check13 = true;
+	if (game.calcScore(hand, FULL_HOUSE) !=25){
+		check13 = false;
+	}
+	if (check13){
+		cout << "check 1 for FULL HOUSE passed\n";
+	}
+
+	hand->getDice(0)->setValue(3);
+	hand->getDice(0)->setValue(3);
+	hand->getDice(0)->setValue(3);
+	hand->getDice(0)->setValue(1);
+	hand->getDice(0)->setValue(6);
+
+	bool check14 = true;
+	if (game.calcScore(hand, THREE_OF_KIND)!=0){
+		check14=false;
+	}
+	if (check14){
+		cout << "check 1 for THREE OF A KIND passed\n";
+	}
+
+	hand->getDice(0)->setValue(2);
+	hand->getDice(0)->setValue(2);
+	hand->getDice(0)->setValue(2);
+	hand->getDice(0)->setValue(3);
+	hand->getDice(0)->setValue(2);
+
+
+	bool check15 = true;
+	if (game.calcScore(hand, FOUR_OF_KIND) !=0){
+		check15=false;
+	}
+	if (check15){
+		cout << "check 1 for FOUR OF A KIND passed\n";
+	}
+
+}
+*/
 // THE AUTOGRADER WILL REPLACE THE MAIN FUNCTION. 
 // DO NOT ADD ANY LOGIC OF YOUR PROGRAM HERE.
 int main() {
 	
-	//run();
+	run();
 	//test_case();
 	return 0;
 }
