@@ -105,9 +105,9 @@ Dice* Hand::getDice(int diceNum){	//sets size of array & return array using dice
 }
 
 void Hand::setSelection(string selection){	//loop thrugh string and set each number to integer
-	for (int i=0; i<selection.size(); i++){
-		int num;
-		num = selection[i] - '0';
+	for (int i=0; i < selection.length(); i++){
+		int num = selection[i] - '0';
+		arr[num-1].setFalse();
 	}
 }
 
@@ -191,6 +191,12 @@ class Game {
 };
 
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. --stash in arrayBoard for every row and return arrayboard[row]
+	int arrayDiceCounter[6]={0,0,0,0,0,0}; 
+						//   1 2 3 4 5 6 
+
+	// for loop going through hand, check what value it is increment at the right index of the array
+	
+	
 	if (row == ONES){	//if row is 0 then it will add up all the 1's in the hand
 		 calculateScore = 0;	//initialize score to 0
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
@@ -247,6 +253,8 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 	}
 	else if (row == THREE_OF_KIND){	//if row is 6 then it will add up all the dice in the hand --need help
 		calculateScore = 0;	//initialize score to 0
+		//go through array of counters and if any values at any index is three, then it is three of a kind
+
 		for (int i=0; i<HAND_SIZE; i++){ //loops through hand
 			calculateScore += hand->getDice(i)->reveal();	//add dice to score
 		}
@@ -320,13 +328,14 @@ int Game::getTotalScore(){	//get the total score by adding the upper score, lowe
 	return totalScore;	//return the total score
 }
 
-void Game::play(Hand* hand, int row){ //Play a hand based on the selected row and updates void Game::show()
+void Game::play(Hand* hand, int row){ //Play a hand based on the selected row and updates void Game::show() -- need help
 int calcScoreValue; //local variable to hold score value and store in arrayBoard[row]
 calcScoreValue = calcScore(hand, row);	//get the score from the calcScore() function
 arrayBoard[row] = calcScoreValue;	//set the arrayBoard[row] to the score
+
 }
 
-void Game::setScore(int row, int score){	//setScore for arrayBoard
+void Game::setScore(int row, int score){ //setScore for arrayBoard
 	arrayBoard[row] = score;
 }
 
@@ -346,8 +355,8 @@ void run() {
 //For these types of programs there exists many combinations that you might have missed. 
 //The best way to check them all is to write test cases for your program. 
 //Here I give you an example of checking large straight. You can design your own test cases for different parts.
-/*
-void test_case() {
+
+/*void test_case() {
 	Game game;
 	Hand* hand = new Hand();
 	hand->getDice(0)->setValue(1);
@@ -410,13 +419,12 @@ void test_case() {
 	}
 
 
-}
-*/
+}*/
 // THE AUTOGRADER WILL REPLACE THE MAIN FUNCTION. 
 // DO NOT ADD ANY LOGIC OF YOUR PROGRAM HERE.
 int main() {
 	
-	run();
+	//run();
 	//test_case();
 	return 0;
 }
