@@ -59,10 +59,10 @@ void Dice::setFalse(){		//sets to ifDicehasRolled to false
 	ifDicehasRolled = false;
 }
 bool Dice::isOpposite(){	//returns opposite of ifDicehasRolled
-	if (ifDicehasRolled == true){
+	if (ifDicehasRolled == true){	//if true, return false
 		return false;
 	}
-	else{
+	else{	//if false, return true
 		return true;
 	}
 }
@@ -85,7 +85,7 @@ class Hand {
 		Hand();	//default constructor - setting all values to false by looping through arr[]
 	
 	private:
-	Dice arr[HAND_SIZE];
+	Dice arr[HAND_SIZE];	//array of dice
 };
 
 void Hand::show(){	//shows five dice
@@ -110,7 +110,7 @@ Dice* Hand::getDice(int diceNum){	//sets size of array & return array using dice
 void Hand::setSelection(string selection){	//loop thrugh string and set each number to integer
 	for (int i=0; i < selection.length(); i++){
 		int num = selection[i] - '0';
-		arr[num-1].setFalse();
+		arr[num-1].setTrue();
 	}
 }
 
@@ -489,12 +489,11 @@ starting_Hyphen_Value = "-";
 	cout <<"Hand: ";
 }
 
-int Game::getUpperScore(){ //get total score from rows 0 to 5 from int calcScore() function and return its value
-Hand *hand = new Hand();	//create new hand
-for(int i=0; i<6; i++){
-upperScore += calcScore(hand, i);	//add up all the scores from rows 0 to 5	
-}
-return upperScore;	//return the total score
+int Game::getUpperScore(){ //get total score from ONES to SIXES (inclusive)
+	for (int i=0; i<6; i++){
+		upperScore += arrayBoard[i];
+	}
+	return upperScore;
 }
 
 int Game::getLowerScore(){ //get total score from rows 6 to 12 from int calcScore() function and return its value
@@ -505,11 +504,14 @@ lowerScore += calcScore(hand, i);	//add up all the scores from rows 6 to 12
 return lowerScore;	//return the total score
 }	
 
-int Game::getBonusScore(){	//if the user gets a score of 63 or more in the upper section then they get a bonus of 35 points
-if (upperScore >= 63){
-	bonusScore = 35;
-}
-return bonusScore;
+int Game::getBonusScore(){	//Check upper board and having bonus correctly and if so add 35 points to upperScore
+	if (upperScore >= 63){	//if upperScore is greater than or equal to 63
+		bonusScore = 35;	//set bonusScore to 35
+	}
+	else{
+		bonusScore = 0;
+	}
+	return bonusScore;	//return bonusScore
 }
 
 int Game::getTotalScore(){	//get the total score by adding the upper score, lower score, and bonus score -- ?????
@@ -545,7 +547,7 @@ bool Game::isPlayed(int row){//Check to see if a row has been played or not (ret
 }
 
 void Game::setScore(int row, int score){ //setScore for arrayBoard
-	arrayBoard[row] = score;
+	arrayBoard[row] = score;	//set the arrayBoard[row] to the score
 }
 
 int Game::getScore(int row){	//getScore for arrayBoard
