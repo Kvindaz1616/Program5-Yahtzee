@@ -181,6 +181,12 @@ class Game {
 		//getScore for arrayBoard
 		int getScore(int row);
 
+		Game(){
+			for (int i=0; i < BOARD_SIZE; i++){
+			arrayBoard[i]=-1;
+			}
+		}
+
 	private:
 	int arrayBoard[BOARD_SIZE]; //arrayBoard
 	int calculateScore; //private int for the function calcScore()
@@ -194,8 +200,7 @@ class Game {
 };
 
 int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) for given row in the board. --stash in arrayBoard for every row and return arrayboard[row]
-	int arrayDiceCounter[6]={0,0,0,0,0,0}; 
-						//   1 2 3 4 5 6 
+
 	int counter = 0;
 	int counter2 = 0;
 	int counter3 = 0;
