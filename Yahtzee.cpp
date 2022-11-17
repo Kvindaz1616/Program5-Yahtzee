@@ -470,6 +470,7 @@ int Game::calcScore(Hand* hand, int row){//returns a score of a hand (5 dice) fo
 
 void Game::show(){	//standard board display
 starting_Hyphen_Value = "-";
+Hand hand;
 	cout << "1." << setw(7) << "Ones:" << setw(14) << starting_Hyphen_Value << endl;
 	cout << "2." << setw(7) << "Twos:" << setw(14) << starting_Hyphen_Value << endl;
 	cout << "3." << setw(9) << "Threes:" << setw(12) << starting_Hyphen_Value << endl;
@@ -487,6 +488,9 @@ starting_Hyphen_Value = "-";
 	cout << "13." << setw(9) << "Yahtzee:" << setw(11) << starting_Hyphen_Value << endl;
 	cout <<"Total:" << setw(17) << "0" << endl;
 	cout <<"Hand: ";
+	hand.play();
+	hand.show();
+	cout <<"Keep Dice (s to stop rolling): ";
 }
 
 int Game::getUpperScore(){ //get total score from ONES to SIXES (inclusive)
@@ -497,11 +501,10 @@ int Game::getUpperScore(){ //get total score from ONES to SIXES (inclusive)
 }
 
 int Game::getLowerScore(){ //get total score from rows 6 to 12 from int calcScore() function and return its value
-Hand *hand = new Hand();	//create new hand
-for(int i=6; i<13; i++){
-lowerScore += calcScore(hand, i);	//add up all the scores from rows 6 to 12	
-}
-return lowerScore;	//return the total score
+	for (int i=6; i<13; i++){
+		lowerScore += arrayBoard[i];
+	}
+	return lowerScore;
 }	
 
 int Game::getBonusScore(){	//Check upper board and having bonus correctly and if so add 35 points to upperScore
@@ -557,8 +560,8 @@ int Game::getScore(int row){	//getScore for arrayBoard
 
 //The run function is the main loop of your program
 void run() {
-	Game board;
-	board.show();
+	Game game;
+	game.show();
 }
 
 
