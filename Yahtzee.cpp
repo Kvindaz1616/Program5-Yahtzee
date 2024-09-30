@@ -3,8 +3,7 @@
  KEVIN DIAZ
  PROGRAM 5 - YAHTZEE
  MWF 1-1:50PM
- CSC-141 - UIC - FALL 2022
- * Starter code provided by: Dr. Sara Riazi
+ CSC-141
  * ***************************/
 
 
